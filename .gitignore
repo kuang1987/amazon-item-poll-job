@@ -1,0 +1,10 @@
+amazon_web/settings.*
+*/*.swp
+*/*.swo
+*/*.pyc
+*/*/*.swp
+*/*/*.swo
+*/*/*.pyc
+media/*/*
+oneItem/migrations/*
+oneItem/templates/html/*.html~

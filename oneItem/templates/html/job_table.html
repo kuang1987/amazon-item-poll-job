@@ -1,0 +1,38 @@
+{% for r in r_list %}
+
+<tr>
+	<td>{{ r.job_id }}</td>
+	<td>{{ r.mail }}</td>
+	<td><a href="/media/{{ r.upfilepath }}">Download</a></td>
+	<td><pre>{{ r.upfilebrief }}</pre></td>	
+	{% if r.rebrief == '' %}
+		<td>--</td>
+	{% else %}
+		<td><pre>{{ r.rebrief }}</pre></td>
+	{% endif %}
+	{% if r.relog %}
+		<td><a href="/item/showrelog/{{ r.job_id }}" target="_blank">View</a></td>	
+	{% else %}
+		<td>--</td>	
+	{% endif %}	
+
+	{% if r.refile and r.status == 'SUCCESS' or r.status == 'FAILURE' %}
+		<td><a href="/media/{{ r.refile }}">Download</a></td>		
+	{% elif r.status == 'NONE' %}
+		<td>--</td>		
+	{% else %}
+		<td><img src="/static/image/loading.gif" alt="" ></td>
+	{% endif %}	
+	
+	<td>
+	{% if r.status == 'SUCCESS' or r.status == 'FAILURE' or r.status == 'NONE' %}
+	<button class="btn btn-default" onclick="startjob({{ r.job_id }})">Start</button>
+	<button class="btn btn-default" onclick="deletejob({{ r.job_id }})">Delete</button>
+	{% else %}
+	<button class="btn btn-default" onclick="startjob({{ r.job_id }})" disabled="disabled">Start</button>
+	<button class="btn btn-default" onclick="deletejob({{ r.job_id }})" disabled="disabled">Delete</button>	
+	{% endif %}
+	</td>	
+</tr>
+
+{% endfor %}

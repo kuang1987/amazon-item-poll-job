@@ -1,0 +1,10 @@
+from django.shortcuts import render,render_to_response
+from django.http import HttpResponse
+from django.template import Context,Template
+from oneItem.models import Asin
+
+# Create your views here.
+
+def index(request):
+    parent_asin_list = Asin.objects.all()
+    return render_to_response('index.html',{'asin_list':parent_asin_list},content_type = "text/html")
